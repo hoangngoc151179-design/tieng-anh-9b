@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sổ lỗi sai · Tiếng Anh</title>
+<link rel="stylesheet" href="../chung/hoc-tap.css?v=202610241024">
+</head>
+<body>
+<header><a href="../index.html">🏠 Trang chủ</a><div class="t2">📕 Sổ lỗi sai của em</div></header>
+<main>
+ <div class="card">
+  <h2>Sửa lỗi tận gốc</h2>
+  <div class="mute">Câu nào em làm sai (trong bài học hay khi ôn tập) đều được ghi vào đây. Em làm lại câu đó <b>đúng 2 lần ở 2 ngày khác nhau</b> thì câu ra khỏi sổ. Mỗi ngày làm đúng một lần thôi nhé.</div>
+ </div>
+ <div class="tabs"><button class="on" data-t="con">Cần sửa <span id="nCon"></span></button><button data-t="xong">Đã sửa xong <span id="nXong"></span></button></div>
+ <div id="ds"></div>
+</main>
+<script src="ngan-hang.js?v=202610241024"></script>
+<script src="../chung/hoc-tap.js?v=202610241024"></script>
+<script>
+const NH=window.NGANHANG||[], BY=Object.fromEntries(NH.map(x=>[x.id,x])), S=SoLoi, GOC="../";
+let tab="con";
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{ tab=b.dataset.t; document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b)); ve(); });
+function ve(){
+  const sl=S.doc().soloi||{}, hn=S.homNay();
+  const con=Object.entries(sl).filter(([id,x])=>!x.sua&&BY[id]).sort((a,b)=>a[1].lan<b[1].lan?1:-1);
+  const xong=Object.entries(sl).filter(([id,x])=>x.sua&&BY[id]).sort((a,b)=>a[1].sua<b[1].sua?1:-1);
+  document.getElementById("nCon").textContent="("+con.length+")"; document.getElementById("nXong").textContent="("+xong.length+")";
+  const ds=document.getElementById("ds"); ds.innerHTML="";
+  const list=tab==="con"?con:xong;
+  if(!list.length){ ds.innerHTML=`<div class="card mute">${tab==="con"?"🎉 Sổ trống – em không còn lỗi nào cần sửa. Giỏi lắm!":"Chưa có câu nào sửa xong."}</div>`; return; }
+  list.forEach(([id,x])=>{ const c=BY[id], d=document.createElement("div"); d.className="loi";
+    const homNayDung=x.dung.includes(hn);
+    d.innerHTML=`<div class="meta"><span>Sai ${x.sai} lần · ghi ngày ${x.tu.split("-").reverse().join("/")}</span><span>Đã đúng: <i class="dot ${x.dung.length>=1?"on":""}"></i><i class="dot ${x.dung.length>=2?"on":""}"></i></span></div><div class="o"></div>
+      <div class="row" style="margin-top:6px"></div>`;
+    const o=d.querySelector(".o"), r=d.querySelector(".row");
+    if(tab==="xong"){ o.innerHTML=`<div class="ch-loai">${c.loai} · ${c.ten}</div><div class="ch-hoi">${c.hoi}</div><div class="ch-giai">✓ Đáp án: <b>${c.kieu==="chon"?c.chon[c.dap]:c.dap[0]}</b><br>👩‍🏫 ${c.giai}</div>`; ds.appendChild(d); return; }
+    if(homNayDung){ o.innerHTML=`<div class="ch-loai">${c.loai} · ${c.ten}</div><div class="ch-hoi">${c.hoi}</div><div class="ch-fb ok" style="display:block">✓ Hôm nay em đã làm đúng câu này. Mai em làm lại thêm một lần nữa là xong!</div>`; }
+    else { const b=document.createElement("button"); b.className="btn"; b.textContent="✏️ Làm lại câu này"; r.appendChild(b);
+      o.innerHTML=`<div class="ch-loai">${c.loai} · ${c.ten}</div><div class="ch-hoi">${c.hoi}</div>`;
+      const xem=document.createElement("button"); xem.className="btn ghost"; xem.textContent="👩‍🏫 Xem lời giải"; r.appendChild(xem);
+      xem.onclick=()=>{ if(o.querySelector(".ch-giai")) return; o.insertAdjacentHTML("beforeend",`<div class="ch-giai">👩‍🏫 ${c.giai}</div>`); if(c.giai_am) S.nghe(GOC+c.giai_am); };
+      b.onclick=()=>{ r.innerHTML=""; S.veCau(c,o,GOC,ok=>{ const meta=d.querySelector(".meta span");
+        if(ok){ const n=S.dung(id); o.insertAdjacentHTML("beforeend",`<div class="ch-fb ok" style="display:block;margin-top:6px">${n>=2?"🎉 Em đã sửa xong lỗi này! Câu ra khỏi sổ.":"Đúng lần "+n+"/2. Mai em làm lại thêm một lần nữa nhé."}</div>`); }
+        else { S.sai(id); }
+        const nut=document.createElement("button"); nut.className="btn ghost"; nut.textContent="Cập nhật sổ"; nut.onclick=ve; r.appendChild(nut); }); };
+    }
+    ds.appendChild(d); });
+}
+ve();
+</script>
+</body>
+</html>

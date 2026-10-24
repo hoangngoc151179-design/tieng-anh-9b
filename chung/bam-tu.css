@@ -1,0 +1,59 @@
+/* Bấm từ – thẻ họ từ lấy theo khung dự án 3 (Khung mẫu/template.html), thêm ô nhỏ khi bấm 1 lần */
+.ht-chip.me{background:rgba(125,249,255,.18);box-shadow:inset 0 0 0 2px #7df9ff,0 0 10px rgba(0,229,255,.6)!important}
+/* thẻ họ từ */
+.hotu{position:fixed;z-index:100001;width:min(560px,94vw);max-height:78vh;overflow:auto;padding:16px 18px 14px;border-radius:18px;background:linear-gradient(160deg,#1a0b3d,#0c1a3a);color:#eef;font:500 15px/1.4 "Be Vietnam Pro","Segoe UI",sans-serif;box-shadow:0 0 0 2px #ffd75e,0 0 22px rgba(255,200,40,.55),0 0 40px rgba(123,60,255,.45)}
+.hotu .ht-x{position:absolute;right:10px;top:8px;border:0;background:none;color:#ffd75e;font-size:24px;cursor:pointer}
+.ht-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:24px}
+.ht-w{font:800 28px/1.1 "Be Vietnam Pro",sans-serif;color:#7df9ff;text-shadow:0 0 12px rgba(0,229,255,.6)}
+.ht-ipa{font-size:17px;color:#c9c3ff}
+.ht-pos{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:#444;color:#fff!important}
+.ht-vi{margin-top:4px;font-size:19px;font-weight:700;color:#fff}
+.ht-def{margin-top:2px;font-size:14px;color:#b8c4ff;font-style:italic}
+.ht-sec{margin-top:11px}
+.ht-h{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#ffd75e;margin-bottom:5px}
+.ht-h.syn{color:#5ef2a0}.ht-h.ant{color:#ff7a8a}.ht-h.aff{color:#c99bff}
+.ht-row{display:flex;flex-wrap:wrap;gap:6px}
+.ht-chip{display:inline-flex;flex-direction:column;align-items:flex-start;border:0;cursor:pointer;padding:4px 10px;border-radius:10px;background:rgba(255,255,255,.08);color:#fff;font:inherit;text-align:left}
+.ht-chip b{font-size:15px;color:#fff}.ht-chip i{font-style:normal;font-size:12px;color:#cfd3ff}
+.ht-chip:hover{background:rgba(255,255,255,.18)}
+.ht-chip.syn{box-shadow:inset 0 0 0 1.5px #5ef2a0}.ht-chip.ant{box-shadow:inset 0 0 0 1.5px #ff7a8a}.ht-chip.aff{box-shadow:inset 0 0 0 1.5px #c99bff}
+.ht-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ht-col{background:rgba(255,255,255,.05);border-radius:12px;padding:6px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.ht-ct{font-size:12px;font-weight:800}.ht-ct span{opacity:.7;font-weight:600}
+.ht-col em{opacity:.4;font-style:normal;padding-left:4px}
+.ht-col.t-n .ht-ct{color:#6ec1ff}.ht-col.t-v .ht-ct{color:#5ef2a0}.ht-col.t-adj .ht-ct{color:#ff8ad8}.ht-col.t-adv .ht-ct{color:#ffb35e}
+.ht-chip.t-n{box-shadow:inset 0 0 0 1.5px #6ec1ff}.ht-chip.t-v{box-shadow:inset 0 0 0 1.5px #5ef2a0}.ht-chip.t-adj{box-shadow:inset 0 0 0 1.5px #ff8ad8}.ht-chip.t-adv{box-shadow:inset 0 0 0 1.5px #ffb35e}
+.ht-pos.t-n{background:#1f5fa8}.ht-pos.t-v{background:#13805a}.ht-pos.t-adj{background:#b3287f}.ht-pos.t-adv{background:#b8640f}
+.ht-aff{display:flex;align-items:center;gap:8px;margin:4px 0;flex-wrap:wrap}
+.ht-part{font-weight:800;color:#1a0b3d;background:#c99bff;border-radius:8px;padding:2px 8px}
+.ht-note{font-size:13px;color:#d9d4ff}
+.ht-tip{margin-top:12px;padding:8px 12px;border-radius:12px;background:rgba(255,215,94,.12);box-shadow:inset 0 0 0 1.5px rgba(255,215,94,.6);font-size:14px}
+.ht-tip b{color:#ffd75e;margin-right:6px}
+.ht-h.irr{color:#ff9f5e}.ht-h.ex{color:#7df9ff}
+.ht-irr{margin:4px 0 6px;padding:7px 9px;border-radius:12px;background:rgba(255,159,94,.08);box-shadow:inset 0 0 0 1.5px rgba(255,159,94,.45)}
+.ht-irt{font-size:13px;font-weight:700;color:#ffc79e;margin-bottom:5px}.ht-irt i{font-style:normal;font-weight:500;color:#e8dcff}
+.ht-irf{display:grid;gap:6px}.ht-irf>div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ht-irf span{font-size:11px;font-weight:700;color:#d9c6b8;letter-spacing:.02em}.ht-irf em{font-style:italic;color:#d9d4ff;font-size:13px;padding:4px 2px}
+.ht-chip.irr{box-shadow:inset 0 0 0 1.5px #ff9f5e}
+.ht-ex{display:flex;gap:9px;align-items:flex-start;margin:6px 0;padding:7px 10px;border-radius:12px;background:rgba(125,249,255,.06);box-shadow:inset 0 0 0 1px rgba(125,249,255,.3)}
+.ht-say{flex:none;width:30px;height:30px;border-radius:50%;border:0;cursor:pointer;background:#7df9ff;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 0 10px rgba(125,249,255,.6)}
+.ht-say:hover{filter:brightness(1.15)}
+.ht-en{font-size:16px;font-weight:600;color:#fff}.ht-exvi{font-size:13px;color:#cfd3ff;margin-top:1px}
+.ht-m{background:none;color:#ffd75e;font-weight:800;cursor:pointer;border-bottom:2px solid rgba(255,215,94,.7);padding:0 1px}
+.ht-sayw{width:30px;height:30px;margin-left:auto}
+.hotu{max-height:70vh}
+@media (max-width:520px){.ht-grid{grid-template-columns:repeat(2,1fr)}}
+/* bấm 1 lần */
+.tu{cursor:pointer;border-radius:4px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tu:hover{background:rgba(255,79,216,.12)}
+.tu-hl{position:fixed;pointer-events:none;z-index:9998;border-radius:6px;background:rgba(255,79,216,.18);box-shadow:0 0 0 2px #ff4fd8,0 0 12px rgba(255,46,200,.6)}
+.tu-tip{position:fixed;z-index:9999;min-width:220px;max-width:min(340px,92vw);padding:10px 14px;border-radius:14px;background:#140a33;color:#fff;font:500 15px/1.4 system-ui,"Segoe UI",sans-serif;box-shadow:0 0 0 2px #ff4fd8,0 0 18px rgba(255,46,200,.55)}
+.tu-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tu-top b{font-size:22px;color:#7df9ff}.tu-top span{color:#c9c3ff;font-size:16px}
+.tu-btns{display:flex;gap:8px;margin-top:8px}
+.tu-btns button{flex:1;border:0;border-radius:10px;padding:8px 10px;font:600 15px system-ui,sans-serif;cursor:pointer;background:#2a1a5e;color:#fff}
+.tu-btns button[data-a=noi]{background:#c4321a}
+.tu-btns button:disabled{opacity:.7}
+.tu-kq{margin-top:6px;font-size:14px;color:#d9d4ff}.tu-kq:empty{display:none}
+.tu-kq.ok{color:#5ef2a0;font-weight:700}.tu-kq.no{color:#ffb3a8}
+.tu-goi{margin-top:6px;font-size:12px;color:#ffd75e;opacity:.85}

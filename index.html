@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tự học Tiếng Anh 9 · Global Success</title>
+<link rel="stylesheet" href="chung/hoc-tap.css?v=202610241024">
+</head>
+<body>
+<header><div class="t2">📘 Tự học Tiếng Anh · Global Success</div></header>
+<main>
+ <!-- mục riêng, không chung vào bài SGK (Sếp dặn 20/10/2026) -->
+ <a class="tile on" href="on-tap/index.html"><div class="ic">🔥</div><div><b>Ôn tập mỗi ngày</b><span id="ttOn">15 câu · khoảng 10 phút</span></div></a>
+ <a class="tile so" href="on-tap/so-loi.html"><div class="ic">📕</div><div><b>Sổ lỗi sai <span class="badge" id="nLoi" hidden></span></b><span>Sửa lại những câu em từng làm sai</span></div></a>
+
+ <div class="card">
+  <h2>Lớp 9 · Unit 7: Natural Wonders of the World</h2>
+  <div id="bai97"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Unit 8: Tourism</h2>
+  <div id="bai98"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Unit 9: World Englishes</h2>
+  <div id="bai99"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Review 3 (Units 7–8–9)</h2>
+  <div id="bai9r3"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Unit 10: Planet Earth</h2>
+  <div id="bai910"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Unit 11: Electronic Devices</h2>
+  <div id="bai911"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Unit 12: Career Choices</h2>
+  <div id="bai912"></div>
+ </div>
+ <div class="card">
+  <h2>Lớp 9 · Review 4 (Units 10–11–12)</h2>
+  <div id="bai9r4"></div>
+ </div>
+ <a class="tile on" href="https://hoangngoc151179-design.github.io/tieng-anh-9a/"><div class="ic">➡️</div><div><b>Lớp 9 · Unit 1–6, Review 1–2</b><span>Mở trang các bài còn lại</span></div></a>
+<p class="mute" style="text-align:center;margin-top:20px;font-size:13px"><a href="nguon-anh.html" style="color:inherit">Nguồn ảnh minh hoạ</a></p>
+</main>
+<script src="chung/hoc-tap.js?v=202610241024"></script>
+<script>
+const BAI=[["lop-6/unit-1/getting-started/index.html","Getting Started","u6-1-gs-v3",6],["lop-6/unit-1/a-closer-look-1/index.html","A Closer Look 1 – Từ vựng & Phát âm","u6-1-acl1-v1",5],
+ ["lop-6/unit-1/a-closer-look-2/index.html","A Closer Look 2 – Ngữ pháp","u6-1-acl2-v1",6],
+ ["lop-6/unit-1/communication/index.html","Communication – Giới thiệu bạn & làm quen","u6-1-com-v1",5],
+ ["lop-6/unit-1/skills-1/index.html","Skills 1 – Đọc & Nói","u6-1-sk1-v1",5],
+ ["lop-6/unit-1/skills-2/index.html","Skills 2 – Nghe (sắp có) & Viết","u6-1-sk2-v1",3],
+ ["lop-6/unit-1/looking-back/index.html","Looking Back & Project – Ôn tập, dự án, tự đánh giá","u6-1-lb-v1",5]];
+const BAI9=[["lop-9/unit-1/getting-started/index.html","Getting Started","u9-1-gs-v1",6]];
+function veBai(el,ds){ ds.forEach(([href,ten,key,n])=>{ let d=0; try{ d=Object.keys(JSON.parse(localStorage.getItem(key)||"{}").done||{}).filter(k=>+k<=n).length; }catch(e){}
+  const a=document.createElement("a"); a.className="bai"; a.href=href;
+  a.innerHTML=`<span>${ten}</span><span class="tt">${d>=n?"✓ Đã học xong":d?`Đã học ${d}/${n} phần`:""}</span>`; el.appendChild(a); }); }
+ 
+const BAI62=[["lop-6/unit-2/getting-started/index.html", "Getting Started – A look inside", "u6-2-gs-v1", 5], ["lop-6/unit-2/a-closer-look-1/index.html", "A Closer Look 1 – Phòng, đồ đạc & âm cuối /s/, /z/", "u6-2-acl1-v1", 5], ["lop-6/unit-2/a-closer-look-2/index.html", "A Closer Look 2 – Sở hữu cách 's & giới từ chỉ nơi chốn", "u6-2-acl2-v1", 5], ["lop-6/unit-2/communication/index.html", "Communication – Đưa ra lời gợi ý · Nơi ở của em", "u6-2-com-v1", 5], ["lop-6/unit-2/skills-1/index.html", "Skills 1 – Đọc & Nói", "u6-2-s1-v1", 5], ["lop-6/unit-2/skills-2/index.html", "Skills 2 – Nghe & Viết", "u6-2-s2-v1", 4], ["lop-6/unit-2/looking-back/index.html", "Looking Back & Project – Ôn tập Unit 2", "u6-2-lb-v1", 6]];
+
+const BAI63=[["lop-6/unit-3/getting-started/index.html", "Getting Started – A surprise guest", "u6-3-gs-v1", 5], ["lop-6/unit-3/a-closer-look-1/index.html", "A Closer Look 1 – Tính từ chỉ tính cách & âm /b/, /p/", "u6-3-acl1-v1", 5], ["lop-6/unit-3/a-closer-look-2/index.html", "A Closer Look 2 – Thì hiện tại tiếp diễn", "u6-3-acl2-v1", 5], ["lop-6/unit-3/communication/index.html", "Communication – Hỏi về ngoại hình và tính cách · Ngày sinh và tính cách", "u6-3-com-v1", 5], ["lop-6/unit-3/skills-1/index.html", "Skills 1 – Đọc & Nói", "u6-3-s1-v1", 4], ["lop-6/unit-3/skills-2/index.html", "Skills 2 – Nghe & Viết", "u6-3-s2-v1", 5], ["lop-6/unit-3/looking-back/index.html", "Looking Back & Project – Ôn tập Unit 3", "u6-3-lb-v1", 6]];
+
+const BAI6R1=[["lop-6/review-1/language/index.html", "Review 1 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u6-r1-lang-v1", 6], ["lop-6/review-1/skills/index.html", "Review 1 – Skills (Đọc, Nói, Nghe, Viết)", "u6-r1-skills-v1", 5]];
+
+const BAI64=[["lop-6/unit-4/getting-started/index.html", "Getting Started – Lost in the old town!", "u6-4-gs-v1", 5], ["lop-6/unit-4/a-closer-look-1/index.html", "A Closer Look 1 – Nơi chốn trong khu phố & âm /ɪ/, /iː/", "u6-4-acl1-v1", 5], ["lop-6/unit-4/a-closer-look-2/index.html", "A Closer Look 2 – So sánh hơn của tính từ", "u6-4-acl2-v1", 4], ["lop-6/unit-4/communication/index.html", "Communication – Hỏi đường và chỉ đường · Bài hướng dẫn tham quan một địa điểm", "u6-4-com-v1", 5], ["lop-6/unit-4/skills-1/index.html", "Skills 1 – Đọc & Nói", "u6-4-s1-v1", 5], ["lop-6/unit-4/skills-2/index.html", "Skills 2 – Nghe & Viết", "u6-4-s2-v1", 4], ["lop-6/unit-4/looking-back/index.html", "Looking Back & Project – Ôn tập Unit 4", "u6-4-lb-v1", 6]];
+
+const BAI65=[["lop-6/unit-5/getting-started/index.html", "Getting Started – Geography Club", "u6-5-gs-v1", 4], ["lop-6/unit-5/a-closer-look-1/index.html", "A Closer Look 1 – Đồ dùng du lịch · Âm /t/ và /d/", "u6-5-acl1-v1", 5], ["lop-6/unit-5/a-closer-look-2/index.html", "A Closer Look 2 – Danh từ đếm được / không đếm được · must / mustn't", "u6-5-acl2-v1", 5], ["lop-6/unit-5/communication/index.html", "Communication – Hẹn gặp và nhận lời hẹn · Cẩm nang du lịch Himalayas (must / mustn't)", "u6-5-com-v1", 5], ["lop-6/unit-5/skills-1/index.html", "Skills 1 – Đọc & Nói", "u6-5-s1-v1", 5], ["lop-6/unit-5/skills-2/index.html", "Skills 2 – Nghe & Viết", "u6-5-s2-v1", 4], ["lop-6/unit-5/looking-back/index.html", "Looking Back & Project – Ôn tập Unit 5", "u6-5-lb-v1", 7]];
+
+const BAI66=[["lop-6/unit-6/getting-started/index.html", "Getting Started – Happy New Year!", "u6-6-gs-v1", 5], ["lop-6/unit-6/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng ngày Tết & âm /s/, /ʃ/", "u6-6-acl1-v1", 5], ["lop-6/unit-6/a-closer-look-2/index.html", "A Closer Look 2 – should / shouldn't & some / any", "u6-6-acl2-v1", 5], ["lop-6/unit-6/communication/index.html", "Communication – Nói lời chúc Năm mới · Phong tục đón Năm mới trên thế giới", "u6-6-com-v1", 5], ["lop-6/unit-6/skills-1/index.html", "Skills 1 – Đọc & Nói", "u6-6-s1-v1", 4], ["lop-6/unit-6/skills-2/index.html", "Skills 2 – Nghe & Viết", "u6-6-s2-v1", 4], ["lop-6/unit-6/looking-back/index.html", "Looking Back & Project – Ôn tập Unit 6", "u6-6-lb-v1", 6]];
+
+const BAI6R2=[["lop-6/review-2/language/index.html", "Review 2 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u6-r2-lang-v1", 5], ["lop-6/review-2/skills/index.html", "Review 2 – Skills (Đọc, Nói, Nghe, Viết)", "u6-r2-skills-v1", 5]];
+
+const BAI92=[["lop-9/unit-2/getting-started/index.html", "Getting Started", "u9-2-gs-v1", 5], ["lop-9/unit-2/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm", "u9-2-acl1-v1", 5], ["lop-9/unit-2/a-closer-look-2/index.html", "A Closer Look 2 – So sánh kép & Cụm động từ", "u9-2-acl2-v1", 5], ["lop-9/unit-2/communication/index.html", "Communication – Đề nghị giúp đỡ & Phương tiện", "u9-2-com-v1", 5], ["lop-9/unit-2/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-2-s1-v1", 5], ["lop-9/unit-2/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-2-s2-v1", 5], ["lop-9/unit-2/looking-back/index.html", "Looking Back & Project", "u9-2-lb-v1", 6]];
+
+const BAI93=[["lop-9/unit-3/getting-started/index.html", "Getting Started", "u9-3-gs-v1", 5], ["lop-9/unit-3/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm", "u9-3-acl1-v1", 5], ["lop-9/unit-3/a-closer-look-2/index.html", "A Closer Look 2 – Modal verbs trong câu điều kiện", "u9-3-acl2-v1", 5], ["lop-9/unit-3/communication/index.html", "Communication – Xin nhắc lại & Bí quyết vui ở trường", "u9-3-com-v1", 5], ["lop-9/unit-3/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-3-s1-v1", 5], ["lop-9/unit-3/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-3-s2-v1", 5], ["lop-9/unit-3/looking-back/index.html", "Looking Back & Project", "u9-3-lb-v1", 6]];
+
+const BAI9R1=[["lop-9/review-1/language/index.html", "Review 1 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u9-r1-lang-v1", 5], ["lop-9/review-1/skills/index.html", "Review 1 – Skills (Đọc, Nói, Nghe, Viết)", "u9-r1-skills-v1", 4]];
+
+const BAI94=[["lop-9/unit-4/getting-started/index.html", "Getting Started", "u9-4-gs-v1", 5], ["lop-9/unit-4/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm /m/, /l/", "u9-4-acl1-v1", 5], ["lop-9/unit-4/a-closer-look-2/index.html", "A Closer Look 2 – Quá khứ tiếp diễn & Wish", "u9-4-acl2-v1", 5], ["lop-9/unit-4/communication/index.html", "Communication – Cảm ơn & Giữ gìn truyền thống", "u9-4-com-v1", 5], ["lop-9/unit-4/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-4-s1-v1", 5], ["lop-9/unit-4/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-4-s2-v1", 5], ["lop-9/unit-4/looking-back/index.html", "Looking Back & Project", "u9-4-lb-v1", 6]];
+
+const BAI95=[["lop-9/unit-5/getting-started/index.html", "Getting Started", "u9-5-gs-v1", 5], ["lop-9/unit-5/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm /j/, /w/", "u9-5-acl1-v1", 5], ["lop-9/unit-5/a-closer-look-2/index.html", "A Closer Look 2 – Thì hiện tại hoàn thành", "u9-5-acl2-v1", 5], ["lop-9/unit-5/communication/index.html", "Communication – Xin lỗi & Trải nghiệm", "u9-5-com-v1", 5], ["lop-9/unit-5/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-5-s1-v1", 5], ["lop-9/unit-5/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-5-s2-v1", 5], ["lop-9/unit-5/looking-back/index.html", "Looking Back & Project", "u9-5-lb-v1", 6]];
+
+const BAI96=[["lop-9/unit-6/getting-started/index.html", "Getting Started", "u9-6-gs-v1", 5], ["lop-9/unit-6/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm /fl/, /fr/", "u9-6-acl1-v1", 5], ["lop-9/unit-6/a-closer-look-2/index.html", "A Closer Look 2 – to V & V-ing", "u9-6-acl2-v1", 5], ["lop-9/unit-6/communication/index.html", "Communication – Lời hứa & Thay đổi quanh ta", "u9-6-com-v1", 5], ["lop-9/unit-6/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-6-s1-v1", 5], ["lop-9/unit-6/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-6-s2-v1", 5], ["lop-9/unit-6/looking-back/index.html", "Looking Back & Project", "u9-6-lb-v1", 6]];
+
+const BAI9R2=[["lop-9/review-2/language/index.html", "Review 2 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u9-r2-lang-v1", 5], ["lop-9/review-2/skills/index.html", "Review 2 – Skills (Đọc, Nói, Nghe, Viết)", "u9-r2-skills-v1", 4]];
+
+const BAI97=[["lop-9/unit-7/getting-started/index.html", "Getting Started", "u9-7-gs-v1", 5], ["lop-9/unit-7/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Phát âm /sl/, /sn/", "u9-7-acl1-v1", 5], ["lop-9/unit-7/a-closer-look-2/index.html", "A Closer Look 2 – Câu tường thuật Yes / No", "u9-7-acl2-v1", 5], ["lop-9/unit-7/communication/index.html", "Communication – Xin phép & Kỳ quan thiên nhiên", "u9-7-com-v1", 5], ["lop-9/unit-7/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-7-s1-v1", 5], ["lop-9/unit-7/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-7-s2-v1", 5], ["lop-9/unit-7/looking-back/index.html", "Looking Back & Project", "u9-7-lb-v1", 6]];
+veBai(document.getElementById("bai97"),BAI97);
+const BAI98=[["lop-9/unit-8/getting-started/index.html", "Getting Started", "u9-8-gs-v1", 5], ["lop-9/unit-8/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Trọng âm -ic, -ious", "u9-8-acl1-v1", 5], ["lop-9/unit-8/a-closer-look-2/index.html", "A Closer Look 2 – Đại từ quan hệ which, who, whose", "u9-8-acl2-v1", 5], ["lop-9/unit-8/communication/index.html", "Communication – Nói về bắt buộc & Chuyến đi của tôi", "u9-8-com-v1", 4], ["lop-9/unit-8/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-8-s1-v1", 5], ["lop-9/unit-8/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-8-s2-v1", 5], ["lop-9/unit-8/looking-back/index.html", "Looking Back & Project", "u9-8-lb-v1", 6]];
+veBai(document.getElementById("bai98"),BAI98);
+const BAI99=[["lop-9/unit-9/getting-started/index.html", "Getting Started", "u9-9-gs-v1", 5], ["lop-9/unit-9/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Trọng âm -ion, -ity", "u9-9-acl1-v1", 5], ["lop-9/unit-9/a-closer-look-2/index.html", "A Closer Look 2 – Mệnh đề quan hệ xác định", "u9-9-acl2-v1", 5], ["lop-9/unit-9/communication/index.html", "Communication – Chúc may mắn & Điều thú vị về tiếng Anh", "u9-9-com-v1", 5], ["lop-9/unit-9/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-9-s1-v1", 5], ["lop-9/unit-9/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-9-s2-v1", 5], ["lop-9/unit-9/looking-back/index.html", "Looking Back & Project", "u9-9-lb-v1", 6]];
+veBai(document.getElementById("bai99"),BAI99);
+const BAI9R3=[["lop-9/review-3/language/index.html", "Review 3 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u9-r3-lang-v1", 5], ["lop-9/review-3/skills/index.html", "Review 3 – Skills (Đọc, Nói, Nghe, Viết)", "u9-r3-skills-v1", 4]];
+veBai(document.getElementById("bai9r3"),BAI9R3);
+const BAI910=[["lop-9/unit-10/getting-started/index.html", "Getting Started", "u9-10-gs-v1", 5], ["lop-9/unit-10/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Nhịp điệu câu", "u9-10-acl1-v1", 5], ["lop-9/unit-10/a-closer-look-2/index.html", "A Closer Look 2 – Mệnh đề quan hệ không xác định", "u9-10-acl2-v1", 5], ["lop-9/unit-10/communication/index.html", "Communication – Thuyết phục & Môi trường sống", "u9-10-com-v1", 5], ["lop-9/unit-10/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-10-s1-v1", 5], ["lop-9/unit-10/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-10-s2-v1", 5], ["lop-9/unit-10/looking-back/index.html", "Looking Back & Project", "u9-10-lb-v1", 6]];
+veBai(document.getElementById("bai910"),BAI910);
+const BAI911=[["lop-9/unit-11/getting-started/index.html", "Getting Started", "u9-11-gs-v1", 5], ["lop-9/unit-11/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng & Nhấn mọi từ trong câu", "u9-11-acl1-v1", 5], ["lop-9/unit-11/a-closer-look-2/index.html", "A Closer Look 2 – suggest / advise / recommend", "u9-11-acl2-v1", 5], ["lop-9/unit-11/communication/index.html", "Communication – Kiểm tra người nghe hiểu chưa & Thiết bị trong lớp học", "u9-11-com-v1", 5], ["lop-9/unit-11/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-11-s1-v1", 5], ["lop-9/unit-11/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-11-s2-v1", 5], ["lop-9/unit-11/looking-back/index.html", "Looking Back & Project", "u9-11-lb-v1", 6]];
+veBai(document.getElementById("bai911"),BAI911);
+const BAI912=[["lop-9/unit-12/getting-started/index.html", "Getting Started", "u9-12-gs-v1", 5], ["lop-9/unit-12/a-closer-look-1/index.html", "A Closer Look 1 – Từ vựng nghề & Ngữ điệu câu hỏi", "u9-12-acl1-v1", 5], ["lop-9/unit-12/a-closer-look-2/index.html", "A Closer Look 2 – although, so…that, such…that, because", "u9-12-acl2-v1", 5], ["lop-9/unit-12/communication/index.html", "Communication – Bày tỏ hy vọng & Nghề tương lai", "u9-12-com-v1", 5], ["lop-9/unit-12/skills-1/index.html", "Skills 1 – Đọc & Nói", "u9-12-s1-v1", 5], ["lop-9/unit-12/skills-2/index.html", "Skills 2 – Nghe & Viết", "u9-12-s2-v1", 5], ["lop-9/unit-12/looking-back/index.html", "Looking Back & Project", "u9-12-lb-v1", 6]];
+veBai(document.getElementById("bai912"),BAI912);
+const BAI9R4=[["lop-9/review-4/language/index.html", "Review 4 – Language (Phát âm, Từ vựng, Ngữ pháp)", "u9-r4-lang-v1", 5], ["lop-9/review-4/skills/index.html", "Review 4 – Skills (Đọc, Nói, Nghe, Viết)", "u9-r4-skills-v1", 4]];
+veBai(document.getElementById("bai9r4"),BAI9R4);
+const c=SoLoi.chuoi(), d=SoLoi.doc(), xong=d.phien&&d.phien.ngay===SoLoi.homNay()&&d.phien.xong;
+document.getElementById("ttOn").textContent=(xong?"✓ Hôm nay em đã ôn xong":"15 câu · khoảng 10 phút")+(c?` · 🔥 ${c} ngày liên tiếp`:"");
+const n=SoLoi.soLoiConLai(); if(n){ const b=document.getElementById("nLoi"); b.hidden=false; b.textContent=n; }
+</script>
+</body>
+</html>
