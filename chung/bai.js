@@ -33,6 +33,12 @@ const so=n=>String(n).padStart(2,"0");
 /* ================= các loại khối ================= */
 const R={};
 R.html=b=>mk("div","",b.html);
+// video YouTube (Sếp đăng chế độ Không công khai, 26/10/2026): {"loai":"video","yt":"<link hoặc mã video>","tieu":"…","chu":"…"} – khung tự co theo màn hình
+R.video=b=>{ const m=String(b.yt||"").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/)||String(b.yt||"").match(/^([A-Za-z0-9_-]{11})$/); const d=mk("div","video-khung");
+  if(b.tieu) d.appendChild(mk("div","video-tieu","🎬 "+b.tieu));
+  if(m){ const k=mk("div","video-16x9"); k.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+m[1]+'?rel=0&modestbranding=1&playsinline=1" title="'+(b.tieu||"Video")+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>'; d.appendChild(k); }
+  else d.appendChild(mk("div","video-tieu","(Chưa có video)"));
+  if(b.chu) d.appendChild(mk("div","video-chu",b.chu)); return d; };
 R.hoithoai=(b,id)=>{ const d=mk("div",""); d.id=b.id||id; const ai=[]; b.luot.forEach(l=>{ if(!ai.includes(l[0])) ai.push(l[0]); });
   const coVn=b.luot.some(l=>l[2]);
   d.innerHTML=`<div class="row" style="margin-bottom:8px"><button class="btn">▶ Nghe cả bài</button>${coVn?'<button class="btn ghost">Xem nghĩa tiếng Việt</button>':""}</div>`;

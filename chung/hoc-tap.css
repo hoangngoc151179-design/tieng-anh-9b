@@ -47,6 +47,7 @@ h2{margin:0 0 6px;font-size:20px}
 
 /* Điện thoại: bớt lề cho chữ ra sát mép (Sếp góp ý 25/10/2026) */
 @media (max-width:600px){
-  main{padding:6px 4px}
-  .card{padding:12px 8px;border-radius:10px;margin-bottom:10px}
+  main{padding:4px 2px}
+  .card{padding:10px 6px;border-radius:8px;margin-bottom:8px}
+  .bai{padding:10px 10px}
 }

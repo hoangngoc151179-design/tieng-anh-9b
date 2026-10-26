@@ -12,7 +12,7 @@ function goc(k){ if(H[k]) return k;
 let cur=null;
 function stopAll(){ try{ if(cur) cur.pause(); speechSynthesis.cancel(); if(window.player) window.player.pause(); }catch(e){} }
 function doc(w){ const k=w.toLowerCase(); stopAll();
-  if(TA.has(k)){ cur=new Audio('audio/tu/'+k+'.mp3'); cur.play().catch(()=>{}); return; }
+  if(TA.has(k)){ cur=new Audio((window.TUPATH||{})[k]||('audio/tu/'+k+'.mp3')); cur.play().catch(()=>{}); return; }   // TUPATH: trang Practice trỏ giọng sang bài cùng Unit
   if(((window.LOIGIANG||{}).cum||[]).includes(k)){ cur=new Audio('audio/cum/'+k.replace(/ /g,'-')+'.mp3'); cur.play().catch(()=>{}); return; }   // cụm từ: school bag, pencil case…
   try{ const u=new SpeechSynthesisUtterance(w); u.lang='en-GB'; const v=speechSynthesis.getVoices().find(x=>/^en/i.test(x.lang)); if(v)u.voice=v; speechSynthesis.speak(u);}catch(e){} }
 function docCau(s){ stopAll(); const A=EXA[s];
@@ -137,7 +137,8 @@ function bocAnh(root){
     s.replace(/[A-Za-z][A-Za-z'’]*/g,(m,i)=>{ f.append(s.slice(last,i)); const sp=document.createElement('span'); sp.className='tu'; sp.textContent=m; f.append(sp); last=i+m.length; });
     f.append(s.slice(last)); n.replaceWith(f); });
 }
-function chayBocAnh(){ const r=document.querySelector('main')||document.body; if(!r) return; bocAnh(r); let t; new MutationObserver(()=>{ clearTimeout(t); t=setTimeout(()=>bocAnh(r),120); }).observe(r,{childList:true,subtree:true}); }
+function chayBocAnh(){ if(window.KHONG_TU_BOC) return;   // trang Practice: không tự bọc cả trang (vướng thao tác làm bài), chỉ bọc vùng đọc bằng BamTu.boc
+  const r=document.querySelector('main')||document.body; if(!r) return; bocAnh(r); let t; new MutationObserver(()=>{ clearTimeout(t); t=setTimeout(()=>bocAnh(r),120); }).observe(r,{childList:true,subtree:true}); }
 if(document.readyState==='loading') addEventListener('DOMContentLoaded',chayBocAnh); else setTimeout(chayBocAnh,0);
 
 
