@@ -19,12 +19,18 @@ function docCau(s){ stopAll(); const A=EXA[s];
   if(A){ cur=new Audio(A); cur.play().catch(()=>{}); return; }
   try{ const u=new SpeechSynthesisUtterance(s); u.lang='en-GB'; speechSynthesis.speak(u);}catch(e){} }
 
+// âm tiết tiếng Việt không dấu hay gặp: trong đoạn tiếng Việt không bọc thành từ tiếng Anh (vd "sang", "tay", "em")
+const AMVIET=new Set(["a", "ai", "am", "an", "anh", "ba", "bac", "ban", "bao", "bay", "be", "ben", "bi", "bo", "bon", "bu", "ca", "cai", "cam", "can", "cao", "cha", "chai", "chan", "chao", "che", "chi", "chia", "chim", "chin", "cho", "choi", "chu", "chua", "chung", "co", "coi", "con", "cu", "cua", "cung", "da", "dai", "dam", "dan", "dao", "dau", "day", "de", "den", "di", "dia", "dinh", "do", "doi", "don", "du", "dua", "dung", "em", "ga", "gai", "gan", "gao", "gay", "ghe", "gi", "gia", "giai", "giao", "gio", "gioi", "ha", "hai", "hang", "hanh", "hao", "hat", "hay", "he", "heo", "hi", "hien", "hieu", "hinh", "ho", "hoa", "hoai", "hoc", "hoi", "hom", "hon", "hong", "hu", "hung", "huong", "in", "ke", "kem", "keo", "khi", "kho", "khoa", "khong", "kia", "kien", "kim", "la", "lai", "lam", "lan", "lang", "lao", "lau", "le", "len", "lo", "loi", "lon", "long", "lu", "luc", "luon", "luong", "ma", "mai", "man", "mang", "mat", "mau", "may", "me", "mo", "moi", "mon", "mot", "mua", "muon", "na", "nam", "nao", "nay", "ne", "ngay", "nghe", "nghi", "ngo", "ngoc", "ngoi", "ngon", "nguoi", "nha", "nhanh", "nhat", "nhieu", "nho", "nhu", "nhung", "no", "noi", "nua", "o", "oi", "on", "ong", "pha", "phai", "phan", "pho", "phong", "phu", "qua", "quan", "que", "ra", "rang", "rat", "rau", "re", "ro", "roi", "rong", "ru", "sa", "sach", "sai", "san", "sang", "sao", "sap", "sau", "se", "sinh", "so", "soi", "song", "su", "suoi", "suy", "ta", "tai", "tam", "tan", "tao", "tap", "tay", "te", "tet", "thanh", "thay", "the", "thi", "thich", "tho", "thoi", "thu", "thuc", "thuong", "ti", "tien", "tim", "tinh", "to", "toi", "tom", "tra", "tran", "tre", "tren", "tro", "trong", "tu", "tuan", "tuoi", "tuong", "u", "va", "vai", "van", "vao", "vay", "ve", "vi", "viec", "viet", "vo", "voi", "vua", "vui", "xa", "xanh", "xe", "xem", "xin", "xong", "y", "yeu"]);
 /* bọc từ */
 function boc(root){
   const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>/[A-Za-z]/.test(n.nodeValue)&&!n.parentElement.closest('.tu,button,script,style,.vn,.khong-boc')?1:2});
   const ns=[]; while(tw.nextNode()) ns.push(tw.currentNode);
   ns.forEach(n=>{ const f=document.createDocumentFragment(); let last=0; const s=n.nodeValue;
-    s.replace(/[A-Za-z][A-Za-z'’]*/g,(m,i)=>{ f.append(s.slice(last,i)); const sp=document.createElement('span'); sp.className='tu'; sp.textContent=m; f.append(sp); last=i+m.length; });
+    const viet=/[À-ỹĐđ]/.test(s);   // đoạn có chữ tiếng Việt: chỉ bọc từ tiếng Anh đã biết, không cắt mảnh chữ Việt (ngh, tr, em…)
+    s.replace(/[A-Za-z][A-Za-z'’]*/g,(m,i)=>{ const tr=s[i-1]||'', sau=s[i+m.length]||'';
+      if(/[^\x00-\x7F]/.test(tr+sau)&&/\p{L}/u.test(tr+sau)) return m;   // dính chữ có dấu → là chữ Việt
+      if(viet){ const k=m.toLowerCase().replace(/’/g,"'"); if(AMVIET.has(k)||(!goc(k)&&!TA.has(k))) return m; }
+      f.append(s.slice(last,i)); const sp=document.createElement('span'); sp.className='tu'; sp.textContent=m; f.append(sp); last=i+m.length; return m; });
     f.append(s.slice(last)); n.replaceWith(f); });
 }
 
@@ -39,11 +45,14 @@ function toVien(el){ const r=el.getBoundingClientRect(); Object.assign(hl.style,
 function moTip(el){
   const w=el.textContent.replace(/’/g,"'"), k=w.toLowerCase(), g=goc(k), c=g?H[g]:null;
   tip.innerHTML=`<div class="tu-top"><b>${E(w)}</b>${c&&c.ipa?`<span>${E(c.ipa)}</span>`:''}</div>
+   ${c&&c.vi?`<div class="tu-vi">${E(c.vi)}</div>`:''}
    <div class="tu-btns"><button data-a="nghe">🔊 Nghe lại</button><button data-a="noi">🎤 Luyện đọc</button></div>
-   <div class="tu-kq"></div><div class="tu-goi">Bấm 2 lần vào từ để xem họ từ</div>`;
+   ${c?'<div class="tu-btns"><button data-a="ht">📖 Xem họ từ, ví dụ</button></div>':''}
+   <div class="tu-kq"></div><div class="tu-goi">${c?'Bấm thêm lần nữa vào từ để xem họ từ':'Từ này cô đang soạn thêm nghĩa'}</div>`;
   document.body.appendChild(tip); datCanh(tip,el);
   tip.querySelector('[data-a=nghe]').onclick=()=>doc(w);
   tip.querySelector('[data-a=noi]').onclick=e=>luyen(w,e.currentTarget,tip.querySelector('.tu-kq'));
+  const ht=tip.querySelector('[data-a=ht]'); if(ht) ht.onclick=()=>{ hl.remove(); tip.remove(); dangTu=null; hoTu(el); };
 }
 
 /* luyện đọc một từ: máy nghe và so; máy không nghe được thì ghi âm rồi phát lại */
@@ -110,7 +119,7 @@ document.addEventListener('click',e=>{
   const el=e.target.closest('.tu');
   if(!el){ if(!e.target.closest('.tu-tip,.hotu')) boViec(); return; }
   e.stopPropagation(); e.preventDefault();
-  if(e.detail>=2){ hl.remove(); tip.remove(); hoTu(el); return; }
+  if(e.detail>=2||(el===dangTu&&tip.isConnected)){ if(goc(el.textContent.toLowerCase().replace(/’/g,"'"))){ hl.remove(); tip.remove(); dangTu=null; hoTu(el); } return; }   // bấm lần 2 = chạm lại đúng từ đó, nhanh hay chậm đều được
   document.querySelectorAll('.hotu').forEach(x=>x.remove());
   dangTu=el; doc(el.textContent.replace(/’/g,"'")); toVien(el); moTip(el);
 },true);
@@ -131,5 +140,25 @@ function bocAnh(root){
 function chayBocAnh(){ const r=document.querySelector('main')||document.body; if(!r) return; bocAnh(r); let t; new MutationObserver(()=>{ clearTimeout(t); t=setTimeout(()=>bocAnh(r),120); }).observe(r,{childList:true,subtree:true}); }
 if(document.readyState==='loading') addEventListener('DOMContentLoaded',chayBocAnh); else setTimeout(chayBocAnh,0);
 
+
+/* Bôi chọn cụm từ / câu tiếng Anh → máy tự đọc (Sếp dặn 25/10/2026: "nhấn chọn một nhóm từ và nhóm từ đó sẽ tự động phát âm ra luôn").
+   Chỉ đọc phần chữ tiếng Anh; chọn toàn chữ tiếng Việt thì không đọc. Không đọc trong ô gõ. */
+let boiCu='', boiHen=null;
+function gongAnh(){ try{ const vs=speechSynthesis.getVoices(); return vs.find(v=>/en[-_]GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null; }catch(e){ return null; } }
+function boiDoc(){
+  const sel=window.getSelection&&window.getSelection(); if(!sel||sel.isCollapsed) { boiCu=''; return; }
+  const a=sel.anchorNode&&(sel.anchorNode.nodeType===1?sel.anchorNode:sel.anchorNode.parentElement);
+  if(a&&a.closest('input,textarea,[contenteditable=true],.hotu,.tu-tip')) return;
+  let t=sel.toString().replace(/\s+/g,' ').trim(); if(!t||t===boiCu) return;
+  // chỉ giữ chữ tiếng Anh: bỏ các từ có dấu tiếng Việt và phần sau dấu "–" giải nghĩa
+  const tu=t.split(' ').filter(w=>!/[À-ɏḀ-ỿ]/.test(w));
+  if(tu.length<1||tu.length<t.split(' ').length/2) return;   // phần lớn là tiếng Việt → không đọc
+  const en=tu.join(' ').replace(/[^A-Za-z0-9'’,.!?\- ]/g,' ').replace(/\s+/g,' ').trim();
+  if(!/[A-Za-z]{2,}/.test(en)) return;
+  boiCu=t; stopAll();
+  try{ const u=new SpeechSynthesisUtterance(en); u.lang='en-GB'; u.rate=0.9; const v=gongAnh(); if(v) u.voice=v; speechSynthesis.speak(u); }catch(e){}
+}
+document.addEventListener('selectionchange',()=>{ clearTimeout(boiHen); boiHen=setTimeout(boiDoc,700); });   // chờ em kéo chọn xong mới đọc
+try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch(e){}
 window.BamTu={boc,doc,luyen,dong:boViec,bocAnh};
 })();

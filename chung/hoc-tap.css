@@ -44,3 +44,9 @@ h2{margin:0 0 6px;font-size:20px}
 .tabs{display:flex;gap:8px;margin-bottom:12px}
 .tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer}
 .tabs button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+
+/* Điện thoại: bớt lề cho chữ ra sát mép (Sếp góp ý 25/10/2026) */
+@media (max-width:600px){
+  main{padding:6px 4px}
+  .card{padding:12px 8px;border-radius:10px;margin-bottom:10px}
+}

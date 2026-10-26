@@ -175,3 +175,13 @@ textarea.van{width:100%;min-height:200px;font:inherit;font-size:17px;line-height
 
 /* Điện thoại: tên nhân vật một dòng, lời thoại chạy ngang hết khung (Sếp dặn 20/10/2026) */
 @media (max-width:600px){.line{flex-wrap:wrap;row-gap:2px}.line .who{flex:1 1 auto;min-width:0;align-self:center}.line .say{flex:1 1 100%;min-width:0}}
+
+/* Điện thoại: bớt lề cho chữ ra sát mép, rộng rãi dễ đọc (Sếp góp ý 25/10/2026) */
+@media (max-width:600px){
+  main{padding:6px 4px}
+  .card{padding:12px 8px;border-radius:10px;margin-bottom:10px}
+  .sub-card{padding:10px 6px}
+  .card .card{padding:10px 6px}
+  .tbl th,.tbl td{padding:5px 5px}
+  .tbl table{border-spacing:1px}
+}
