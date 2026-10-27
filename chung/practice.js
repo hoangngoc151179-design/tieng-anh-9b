@@ -372,8 +372,8 @@ D[19]=n=>{ const O=P.d19; tienDo(0,1,`${O.min}–${O.max} từ`);
     const coNP=O.ngu_phap.filter(w=>lowNP.includes(" "+w.toLowerCase()+" "));
     const cau=s.split(/(?<=[.!?])\s+/).filter(x=>x.trim()); const hoa=cau.every(c=>/^[^A-Za-z]*[A-Z]/.test(c.trim())); const cham=/[.!?]["”']?$/.test(s);
     const tc=[[k>=O.min&&k<=O.max,`Độ dài: <b>${k}</b> từ`,k<O.min?`Em viết thêm ${O.min-k} từ nữa (trả lời thêm câu gợi ý).`:k>O.max?`Bài dài quá ${k-O.max} từ, em bớt câu lặp ý nhé.`:"Đúng độ dài yêu cầu."],
-      [coTu.length>=3,`Từ vựng chủ đề: ${coTu.length?coTu.map(E).join(", "):"chưa có"}`,coTu.length>=3?"Em dùng tốt từ vựng của Unit.":"Em dùng ít nhất 3 từ chủ đề (programme, channel, character…)."],
-      [coNP.length>=1,`Ngữ pháp Unit: ${coNP.length?coNP.map(E).join(", "):"chưa có"}`,coNP.length?"Em đã nối câu / nêu lí do.":`Em thử dùng ${O.ngu_phap.map(E).join(", ")} để nối câu, nêu lí do.`],
+      [coTu.length>=3,`Từ vựng chủ đề: ${coTu.length?coTu.map(E).join(", "):"chưa có"}`,coTu.length>=3?"Em dùng tốt từ vựng của Unit.":`Em dùng ít nhất 3 từ chủ đề (${(O.tu_khoa||[]).slice(0,3).map(E).join(", ")}…).`],
+      [coNP.length>=1,`Ngữ pháp Unit: ${coNP.length?coNP.map(E).join(", "):"chưa có"}`,coNP.length?"Em đã dùng ngữ pháp của Unit.":`Em thử dùng ${O.ngu_phap.map(E).join(", ")} trong bài.`],
       [hoa,"Viết hoa đầu câu",hoa?"Câu nào cũng viết hoa chữ cái đầu.":"Có câu chưa viết hoa chữ cái đầu – em sửa lại nhé."],
       [cham,"Dấu chấm cuối câu",cham?"Có dấu chấm cuối bài.":"Cuối câu cuối cùng cần dấu chấm (.)"]];
     const d=tc.filter(t=>t[0]).length;
