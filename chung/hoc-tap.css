@@ -51,3 +51,9 @@ h2{margin:0 0 6px;font-size:20px}
   .card{padding:10px 6px;border-radius:8px;margin-bottom:8px}
   .bai{padding:10px 10px}
 }
+
+/* Điện thoại: kéo khung trong ra sát mép hơn nữa (Sếp góp ý 27/10/2026) */
+@media (max-width:600px){header{padding:10px 8px}.steps{padding:8px 4px}.line{padding:6px 4px;gap:6px}.q{padding:10px 6px}.opt{padding:8px 10px}.box{padding:6px 4px}.giang{padding:10px 8px}.memo{padding:8px 6px}.vw{padding:6px 6px}.sub-card{padding:8px 4px}.tile{padding:12px 10px;gap:10px}.bai{padding:10px 6px}.steps,.giang,.q{margin-left:0;margin-right:0}}
+
+/* Điện thoại: gọn khoảng trống dọc (Sếp góp ý 27/10/2026) */
+@media (max-width:600px){.tile{margin-bottom:8px}.bai{margin-bottom:6px}}

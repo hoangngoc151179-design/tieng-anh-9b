@@ -193,3 +193,21 @@ details.goi summary{cursor:pointer;font-weight:700;color:#8a5a00}
   .ht-l .ai{flex-basis:auto}
   .opts.g2{grid-template-columns:1fr}
 }
+
+/* Điện thoại: chữ ra sát mép, khung rộng (Sếp góp ý 25–27/10/2026) */
+@media (max-width:600px){
+  main{padding:4px 2px}
+  .pt-top{padding:10px 8px}
+  .card{padding:10px 6px;border-radius:8px;margin-bottom:8px}
+  .pt-card{padding:12px 8px;gap:10px;border-radius:12px}
+  .tf,.noi-q,.oc-q,.nhom-box{padding:8px 6px}
+  .opt{padding:10px 8px}
+  .fb{padding:10px 8px}.giai{padding:8px 8px}
+  .mau{padding:8px 8px}details.goi{padding:8px 8px}
+  .ds-a li{padding:7px 8px}
+  .pool,.ans{padding:6px}
+  .pt-nhom,.pt-intro,.pt-sum{margin-left:0;margin-right:0}
+}
+
+/* Điện thoại: gọn khoảng trống dọc (Sếp góp ý 27/10/2026) */
+@media (max-width:600px){.pt-nhom{margin:14px 0 6px;font-size:19px}.pt-grid{gap:8px}.anh{margin-bottom:8px}.hoi{margin:2px 0 8px}.tf,.noi-q,.oc-q{margin-bottom:6px}}
