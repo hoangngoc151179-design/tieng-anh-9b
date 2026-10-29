@@ -38,7 +38,7 @@ function doc(text,cham){ dung(); const k=sach(text).replace(/’/g,"'").toLowerC
 try{ speechSynthesis.getVoices(); }catch(e){}
 
 /* so câu gõ: không phân biệt hoa thường, nháy cong, dấu phẩy, dấu cuối câu; nhận cả dạng viết tắt / viết đủ */
-const TAT={"doesn't":"does not","don't":"do not","isn't":"is not","aren't":"are not","can't":"cannot","won't":"will not","it's":"it is","they're":"they are","i'm":"i am","he's":"he is","she's":"she is","what's":"what is","who's":"who is","we're":"we are","you're":"you are","that's":"that is","there's":"there is","i'll":"i will","didn't":"did not","wasn't":"was not","weren't":"were not"};
+const TAT={"doesn't":"does not","don't":"do not","isn't":"is not","aren't":"are not","can't":"cannot","won't":"will not","it's":"it is","they're":"they are","i'm":"i am","he's":"he is","she's":"she is","what's":"what is","who's":"who is","we're":"we are","you're":"you are","that's":"that is","there's":"there is","i'll":"i will","didn't":"did not","wasn't":"was not","weren't":"were not","haven't":"have not","hasn't":"has not","hadn't":"had not","i've":"i have","we've":"we have","you've":"you have","they've":"they have","shouldn't":"should not","couldn't":"could not","we'll":"we will","you'll":"you will","they'll":"they will","he'll":"he will","she'll":"she will","it'll":"it will","mustn't":"must not","wouldn't":"would not","i'd":"i would"};
 function chuan(s){ s=String(s||"").toLowerCase().replace(/[’‘`´]/g,"'").replace(/[“”]/g,'"').replace(/[.,!?;:"]/g," ").replace(/\s+/g," ").trim();
   return s.split(" ").map(w=>TAT[w]||w).join(" ").replace(/\bcan not\b/g,"cannot"); }
 const khop=(s,ds)=>ds.some(d=>chuan(d)===chuan(s));
@@ -283,7 +283,8 @@ D[14]=n=>tungCau(n,P.d14,(x,box,xong)=>{
     b.onclick=()=>{ if(ans.dataset.xong) return; if(b.parentElement===pool){ ans.insertBefore(b,cu); da.push(i); } else { pool.appendChild(b); da.splice([...ans.querySelectorAll(".tok")].indexOf(b)===-1?da.indexOf(i):da.indexOf(i),1); }
       btK.disabled=da.length<tok.length; }; });
   btK.onclick=()=>{ ans.dataset.xong=1; kt.remove(); const cau=[...ans.querySelectorAll(".tok")].map(b=>b.textContent).join(" ")+cuoi;
-    const ok=[x.d,...(x.khac||[])].some(d=>d.replace(/\s+/g," ").trim()===cau); ans.classList.add(ok?"right":"wrong"); doc(x.d);
+    const chuan=s=>s.replace(/[’‘]/g,"'").replace(/[.?!,]+/g," ").replace(/\s+/g," ").trim().toLowerCase();   // thứ tự đúng khác: không phân biệt hoa thường, dấu câu (27/10/2026)
+    const ok=[x.d,...(x.khac||[])].some(d=>chuan(d)===chuan(cau)); ans.classList.add(ok?"right":"wrong"); doc(x.d);
     box.insertAdjacentHTML("beforeend",fbHtml(ok,E(x.d),x.g)); xong(ok,false,`<b>${E(x.d)}</b> – ${x.g}`); };
 });
 
